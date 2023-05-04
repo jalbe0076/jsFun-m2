@@ -20,26 +20,44 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
-  orangePetNames() {
+  orangePetNames(kitties) {
     // Return an array of just the names of kitties who are orange e.g.
-        // ['Tiger', 'Snickers']
-
-        /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
-  },
-
-  sortByAge() {
-    // Sort the kitties by their age
+    // ['Tiger', 'Snickers']
 
     /* CODE GOES HERE */
 
+    const orangeKittyNames = kitties
+    .filter(cat => cat.color === 'orange')
+    .map(kitty => kitty.name);
+
+    return orangeKittyNames;
+
     // Annotation:
     // Write your annotation here as a comment
   },
 
-  growUp() {
+  sortByAge(kitties) {
+    // Sort the kitties by their age
+
+    /* CODE GOES HERE */
+    // let kittiesList = kitties;
+
+    const oldToYoungKitties = kitties.sort((cat1, cat2) => {
+      return cat2.age - cat1.age;
+    });
+
+    return oldToYoungKitties;
+
+    // Annotation:
+    // Write your annotation here as a comment:
+    // returns a number value, if no function is passed in the values are sorted by converting them to strings and comparing strings in UTF-16 code units order
+    // compareFn(a, b) return value	  sort order
+    // > 0	                            sort a after b, e.g. [b, a]
+    // < 0	                            sort a before b, e.g. [a, b]
+    // === 0	                          keep original order of a and b
+  },
+
+  growUp(kitties) {
     // Return an array of kitties who have all grown up by 2 years e.g.
     // [{
     //   name: 'Felicia',
@@ -54,6 +72,10 @@ const kittyPrompts = {
     // ...etc]
 
     /* CODE GOES HERE */
+
+    kitties.forEach(cat => cat.age += 2);
+
+    return kitties;
   }
 };
 
