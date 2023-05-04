@@ -57,7 +57,7 @@ const kittyPrompts = {
     // === 0	                          keep original order of a and b
   },
 
-  growUp() {
+  growUp(kitties) {
     // Return an array of kitties who have all grown up by 2 years e.g.
     // [{
     //   name: 'Felicia',
@@ -72,6 +72,10 @@ const kittyPrompts = {
     // ...etc]
 
     /* CODE GOES HERE */
+
+    kitties.forEach(cat => cat.age += 2);
+
+    return kitties;
   }
 };
 
