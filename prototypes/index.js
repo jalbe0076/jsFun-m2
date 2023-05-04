@@ -22,7 +22,7 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 const kittyPrompts = {
   orangePetNames(kitties) {
     // Return an array of just the names of kitties who are orange e.g.
-        // ['Tiger', 'Snickers']
+    // ['Tiger', 'Snickers']
 
     /* CODE GOES HERE */
 
@@ -36,13 +36,25 @@ const kittyPrompts = {
     // Write your annotation here as a comment
   },
 
-  sortByAge() {
+  sortByAge(kitties) {
     // Sort the kitties by their age
 
     /* CODE GOES HERE */
+    // let kittiesList = kitties;
+
+    const oldToYoungKitties = kitties.sort((cat1, cat2) => {
+      return cat2.age - cat1.age;
+    });
+
+    return oldToYoungKitties;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Write your annotation here as a comment:
+    // returns a number value, if no function is passed in the values are sorted by converting them to strings and comparing strings in UTF-16 code units order
+    // compareFn(a, b) return value	  sort order
+    // > 0	                            sort a after b, e.g. [b, a]
+    // < 0	                            sort a before b, e.g. [a, b]
+    // === 0	                          keep original order of a and b
   },
 
   growUp() {
