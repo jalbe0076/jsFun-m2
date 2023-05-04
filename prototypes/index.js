@@ -498,6 +498,16 @@ const breweryPrompts = {
     // 40
 
     /* CODE GOES HERE */
+        //PSEUDOCODE
+          // GOAL = Return the total number of beers available at all brewries
+          // Iterate through an array of objects with nested objects for the beers
+          // use reduce since we want to return a single value
+          
+    const totalAvailableBeers = breweries.reduce((total, brewery) => {
+      return total += brewery.beers.length;
+    }, 0);
+
+    return totalAvailableBeers;
 
     // Annotation:
     // Write your annotation here as a comment
