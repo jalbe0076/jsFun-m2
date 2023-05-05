@@ -413,7 +413,7 @@ const bookPrompts = {
     // Write your annotation here as a comment
 
   },
-  getNewBooks() {
+  getNewBooks(books) {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
 
@@ -422,6 +422,14 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
+
+    return books.filter(book => book.published >= 1990)
+                .map((book) => {
+                  return {
+                    title: book.title,
+                    year: book.published
+                  };
+                }, []);
 
     // Annotation:
     // Write your annotation here as a comment
