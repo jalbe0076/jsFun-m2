@@ -288,6 +288,17 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!Object.keys(acc).includes(topping)) {
+          acc[topping] = 0;
+        }
+        acc[topping] += 1;
+      });
+      
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   }
