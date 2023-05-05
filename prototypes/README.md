@@ -89,9 +89,9 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 
 #### Single Data Sets
 - [X] kitties
-- [ ] puppers
-- [ ] club
-- [ ] mods
+- [X] puppers
+- [X] club
+- [X] mods
 - [ ] cakes
 - [ ] classrooms
 - [ ] books
