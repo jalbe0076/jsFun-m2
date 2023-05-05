@@ -200,6 +200,10 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.map(cake => {
+      return {flavor: cake.cakeFlavor, inStock: cake.inStock};
+    });
+
     // Annotation:
     // Write your annotation here as a comment
   },
