@@ -332,7 +332,7 @@ const classPrompts = {
     // ]
 
     /* CODE GOES HERE */
-    
+
     const feClasses = classrooms.filter(classroom => {
       if (classroom.program === 'FE') {
         return classroom;
@@ -353,6 +353,21 @@ const classPrompts = {
     // }
 
     /* CODE GOES HERE */
+
+    return classrooms.reduce((acc, classroom) => {
+      if (!Object.keys(acc).length) {
+        acc.feCapacity = 0;
+        acc.beCapacity = 0;
+      }
+
+      if (classroom.program === 'FE') {
+        acc.feCapacity += classroom.capacity;
+      } else {
+        acc.beCapacity += classroom.capacity;
+      }
+
+      return acc;
+    }, {});
 
     // Annotation:
     // Write your annotation here as a comment
