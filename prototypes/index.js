@@ -262,6 +262,15 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc.includes(topping)) {
+          acc.push(topping);
+        }
+      })
+      return acc;
+    }, []);
+
     // Annotation:
     // Write your annotation here as a comment
   },
