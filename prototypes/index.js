@@ -200,6 +200,10 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.map(cake => {
+      return {flavor: cake.cakeFlavor, inStock: cake.inStock};
+    });
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -227,6 +231,14 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    const inStockCakes = cakes.filter(cake => {
+        if (cake.inStock) {
+          return cake;
+        }
+    });
+
+    return inStockCakes;
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -236,6 +248,8 @@ const cakePrompts = {
     // 59
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => acc + cake.inStock, 0);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -247,6 +261,15 @@ const cakePrompts = {
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc.includes(topping)) {
+          acc.push(topping);
+        }
+      })
+      return acc;
+    }, []);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -264,6 +287,17 @@ const cakePrompts = {
     // }
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!Object.keys(acc).includes(topping)) {
+          acc[topping] = 0;
+        }
+        acc[topping] += 1;
+      });
+      
+      return acc;
+    }, {});
 
     // Annotation:
     // Write your annotation here as a comment
