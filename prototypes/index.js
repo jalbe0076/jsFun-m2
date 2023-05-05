@@ -249,6 +249,8 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.reduce((acc, cake) => acc + cake.inStock, 0);
+
     // Annotation:
     // Write your annotation here as a comment
   },
