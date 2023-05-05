@@ -333,6 +333,13 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    const feClasses = classrooms.filter(classroom => {
+      if (classroom.program === 'FE') {
+        return classroom;
+      }
+    });
+    return feClasses;
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -347,6 +354,21 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    return classrooms.reduce((acc, classroom) => {
+      if (!Object.keys(acc).length) {
+        acc.feCapacity = 0;
+        acc.beCapacity = 0;
+      }
+
+      if (classroom.program === 'FE') {
+        acc.feCapacity += classroom.capacity;
+      } else {
+        acc.beCapacity += classroom.capacity;
+      }
+
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -355,6 +377,11 @@ const classPrompts = {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
     /* CODE GOES HERE */
+
+    const classSortedByCapacity = classrooms.sort((classroomA, classroomB) => {
+      return classroomA.capacity - classroomB.capacity;
+    })
+    return classSortedByCapacity;
 
     // Annotation:
     // Write your annotation here as a comment
