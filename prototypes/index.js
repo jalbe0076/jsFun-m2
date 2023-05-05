@@ -231,6 +231,14 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    const inStockCakes = cakes.filter(cake => {
+        if (cake.inStock) {
+          return cake;
+        }
+    });
+
+    return inStockCakes;
+
     // Annotation:
     // Write your annotation here as a comment
   },
