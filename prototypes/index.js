@@ -113,7 +113,7 @@ const clubPrompts = {
 
     const clubMemberships = clubs.reduce((acc, club) => {
       club.members.forEach(member => {
-        if (!Object.keys(acc).includes(member)) {
+        if (!acc[member]) {
           acc[member] = [];
         }
         acc[member].push(club.club)
@@ -161,7 +161,7 @@ const modPrompts = {
 
     const modStudentsPerInstructor = mods.map(modules => {
       const studentsPerInstructor = modules.students / modules.instructors;
-      return {mod: modules.mod, "studentsPerInstructor": studentsPerInstructor};
+      return {mod: modules.mod, studentsPerInstructor: studentsPerInstructor};
     });
 
     return modStudentsPerInstructor;
@@ -232,15 +232,14 @@ const cakePrompts = {
     /* CODE GOES HERE */
 
     const inStockCakes = cakes.filter(cake => {
-        if (cake.inStock) {
-          return cake;
-        }
+          return cake.inStock;
     });
 
     return inStockCakes;
 
     // Annotation:
     // Write your annotation here as a comment
+    // if statement is not required because filter expects a bolean value to return the argument
   },
 
   totalInventory() {
@@ -290,7 +289,7 @@ const cakePrompts = {
 
     return cakes.reduce((acc, cake) => {
       cake.toppings.forEach(topping => {
-        if (!Object.keys(acc).includes(topping)) {
+        if (!acc[topping]) {
           acc[topping] = 0;
         }
         acc[topping] += 1;
@@ -333,11 +332,7 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
-    const feClasses = classrooms.filter(classroom => {
-      if (classroom.program === 'FE') {
-        return classroom;
-      }
-    });
+    const feClasses = classrooms.filter(classroom => classroom.program === 'FE');
     return feClasses;
 
     // Annotation:
@@ -397,7 +392,7 @@ const classPrompts = {
 // DATASET: books from './datasets/books
 
 const bookPrompts = {
-  removeViolence() {
+  removeViolence(books) {
     // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
@@ -409,6 +404,10 @@ const bookPrompts = {
 
 
     /* CODE GOES HERE */
+
+    return books
+      .filter(book => book.genre !== 'True Crime' && book.genre !== 'Horror')
+      .map(book => book.title);
 
     // Annotation:
     // Write your annotation here as a comment
