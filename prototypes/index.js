@@ -378,6 +378,11 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    const classSortedByCapacity = classrooms.sort((classroomA, classroomB) => {
+      return classroomA.capacity - classroomB.capacity;
+    })
+    return classSortedByCapacity;
+
     // Annotation:
     // Write your annotation here as a comment
   }
