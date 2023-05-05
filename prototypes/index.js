@@ -332,6 +332,13 @@ const classPrompts = {
     // ]
 
     /* CODE GOES HERE */
+    
+    const feClasses = classrooms.filter(classroom => {
+      if (classroom.program === 'FE') {
+        return classroom;
+      }
+    });
+    return feClasses;
 
     // Annotation:
     // Write your annotation here as a comment
