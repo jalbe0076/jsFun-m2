@@ -429,7 +429,7 @@ const bookPrompts = {
                     title: book.title,
                     year: book.published
                   };
-                }, []);
+                });
 
     // Annotation:
     // Write your annotation here as a comment
@@ -446,6 +446,14 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
+
+    return books.filter(book => book.published >= year)
+                .map(book => {
+                  return {
+                    title: book.title,
+                    year: book.published
+                  };
+                });
 
     // Annotation:
     // Write your annotation here as a comment
