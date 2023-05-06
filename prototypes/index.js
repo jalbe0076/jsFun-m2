@@ -477,6 +477,9 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.map(weather => {
+      return (weather.temperature.high + weather.temperature.low) / 2;
+    });
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -490,6 +493,8 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.filter(weather => weather.type === 'sunny' || weather.type === 'mostly sunny').map(weather => `${weather.location} is ${weather.type}.`);
+   
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -505,9 +510,17 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.reduce((acc, weather) => {
+      if (weather.humidity > acc.humidity || !acc.humidity) {
+        acc = weather;
+      }
+      return acc;
+    }, {})
+
     // Annotation:
     // Write your annotation here as a comment
-
+    // cannot filter since we're not returning an array, we want to reduce because we're returning an object.
+    // Added an or in the conditional because if acc is empty wee need to provide it with the key of humidity to check the next time. 
   }
 };
 

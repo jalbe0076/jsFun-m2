@@ -94,8 +94,8 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 - [X] mods
 - [X] cakes
 - [X] classrooms
-- [ ] books
-- [ ] weather
+- [X] books
+- [X] weather
 - [ ] nationalParks
 - [ ] breweries
 
