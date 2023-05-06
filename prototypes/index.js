@@ -544,6 +544,23 @@ const nationalParksPrompts = {
 
     /* CODE GOES HERE */
 
+    return nationalParks.reduce ((acc, park) => {
+
+      if (!acc.parksToVisit || !acc.parksVisited) {
+        acc.parksToVisit = [];
+        acc.parksVisited = [];
+      }
+
+      if (park.visited) {
+        acc.parksVisited.push(park.name);
+      } else {
+        acc.parksToVisit.push(park.name)
+      }
+      console.log(acc)
+      
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   },
