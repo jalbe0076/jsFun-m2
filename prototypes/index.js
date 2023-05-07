@@ -556,7 +556,6 @@ const nationalParksPrompts = {
       } else {
         acc.parksToVisit.push(park.name)
       }
-      console.log(acc)
       
       return acc;
     }, {});
@@ -576,6 +575,12 @@ const nationalParksPrompts = {
 
 
     /* CODE GOES HERE */
+
+    return nationalParks.map(park => {
+      return {
+        [park.location]: park.name
+      };
+    })
 
     // Annotation:
     // Write your annotation here as a comment
