@@ -99,7 +99,7 @@ const kittyPrompts = {
 
 // DATASET: clubs from ./datasets/clubs
 const clubPrompts = {
-  membersBelongingToClubs() {
+  membersBelongingToClubs(clubs) {
     // Your function should access the clubs data through a parameter (it is being passed as an argument in the test file)
     // Create an object whose keys are the names of people, and whose values are
     // arrays that include the names of the clubs that person is a part of. e.g.
@@ -110,6 +110,19 @@ const clubPrompts = {
     // }
 
     /* CODE GOES HERE */
+
+    const clubMemberships = clubs.reduce((acc, club) => {
+      club.members.forEach(member => {
+        if (!acc[member]) {
+          acc[member] = [];
+        }
+        acc[member].push(club.club)
+      })
+      
+      return acc;
+    }, {});
+
+    return clubMemberships;
 
     // Annotation:
     // Write your annotation here as a comment
@@ -146,6 +159,13 @@ const modPrompts = {
 
     /* CODE GOES HERE */
 
+    const modStudentsPerInstructor = mods.map(modules => {
+      const studentsPerInstructor = modules.students / modules.instructors;
+      return {mod: modules.mod, studentsPerInstructor: studentsPerInstructor};
+    });
+
+    return modStudentsPerInstructor;
+    
     // Annotation:
     // Write your annotation here as a comment
   }
@@ -180,6 +200,10 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    return cakes.map(cake => {
+      return {flavor: cake.cakeFlavor, inStock: cake.inStock};
+    });
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -207,8 +231,15 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    const inStockCakes = cakes.filter(cake => {
+          return cake.inStock;
+    });
+
+    return inStockCakes;
+
     // Annotation:
     // Write your annotation here as a comment
+    // if statement is not required because filter expects a bolean value to return the argument
   },
 
   totalInventory() {
@@ -216,6 +247,8 @@ const cakePrompts = {
     // 59
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => acc + cake.inStock, 0);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -227,6 +260,15 @@ const cakePrompts = {
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc.includes(topping)) {
+          acc.push(topping);
+        }
+      })
+      return acc;
+    }, []);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -244,6 +286,17 @@ const cakePrompts = {
     // }
 
     /* CODE GOES HERE */
+
+    return cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc[topping]) {
+          acc[topping] = 0;
+        }
+        acc[topping] += 1;
+      });
+      
+      return acc;
+    }, {});
 
     // Annotation:
     // Write your annotation here as a comment
@@ -279,6 +332,9 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    const feClasses = classrooms.filter(classroom => classroom.program === 'FE');
+    return feClasses;
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -293,6 +349,21 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    return classrooms.reduce((acc, classroom) => {
+      if (!Object.keys(acc).length) {
+        acc.feCapacity = 0;
+        acc.beCapacity = 0;
+      }
+
+      if (classroom.program === 'FE') {
+        acc.feCapacity += classroom.capacity;
+      } else {
+        acc.beCapacity += classroom.capacity;
+      }
+
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -301,6 +372,11 @@ const classPrompts = {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
     /* CODE GOES HERE */
+
+    const classSortedByCapacity = classrooms.sort((classroomA, classroomB) => {
+      return classroomA.capacity - classroomB.capacity;
+    })
+    return classSortedByCapacity;
 
     // Annotation:
     // Write your annotation here as a comment
@@ -316,7 +392,7 @@ const classPrompts = {
 // DATASET: books from './datasets/books
 
 const bookPrompts = {
-  removeViolence() {
+  removeViolence(books) {
     // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
@@ -329,11 +405,15 @@ const bookPrompts = {
 
     /* CODE GOES HERE */
 
+    return books
+      .filter(book => book.genre !== 'True Crime' && book.genre !== 'Horror')
+      .map(book => book.title);
+
     // Annotation:
     // Write your annotation here as a comment
 
   },
-  getNewBooks() {
+  getNewBooks(books) {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
 
@@ -342,6 +422,14 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
+
+    return books.filter(book => book.published >= 1990)
+                .map((book) => {
+                  return {
+                    title: book.title,
+                    year: book.published
+                  };
+                });
 
     // Annotation:
     // Write your annotation here as a comment
@@ -358,6 +446,14 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
+
+    return books.filter(book => book.published >= year)
+                .map(book => {
+                  return {
+                    title: book.title,
+                    year: book.published
+                  };
+                });
 
     // Annotation:
     // Write your annotation here as a comment
@@ -381,6 +477,9 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.map(weather => {
+      return (weather.temperature.high + weather.temperature.low) / 2;
+    });
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -394,6 +493,8 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.filter(weather => weather.type === 'sunny' || weather.type === 'mostly sunny').map(weather => `${weather.location} is ${weather.type}.`);
+   
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -409,9 +510,17 @@ const weatherPrompts = {
 
     /* CODE GOES HERE */
 
+    return weather.reduce((acc, weather) => {
+      if (weather.humidity > acc.humidity || !acc.humidity) {
+        acc = weather;
+      }
+      return acc;
+    }, {})
+
     // Annotation:
     // Write your annotation here as a comment
-
+    // cannot filter since we're not returning an array, we want to reduce because we're returning an object.
+    // Added an or in the conditional because if acc is empty wee need to provide it with the key of humidity to check the next time. 
   }
 };
 
@@ -435,6 +544,22 @@ const nationalParksPrompts = {
 
     /* CODE GOES HERE */
 
+    return nationalParks.reduce ((acc, park) => {
+
+      if (!acc.parksToVisit || !acc.parksVisited) {
+        acc.parksToVisit = [];
+        acc.parksVisited = [];
+      }
+
+      if (park.visited) {
+        acc.parksVisited.push(park.name);
+      } else {
+        acc.parksToVisit.push(park.name)
+      }
+      
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -450,6 +575,12 @@ const nationalParksPrompts = {
 
 
     /* CODE GOES HERE */
+
+    return nationalParks.map(park => {
+      return {
+        [park.location]: park.name
+      };
+    })
 
     // Annotation:
     // Write your annotation here as a comment
@@ -472,6 +603,18 @@ const nationalParksPrompts = {
     //   'rock climbing' ]
 
     /* CODE GOES HERE */
+
+    return nationalParks
+      .map(park => park.activities)
+      .reduce((acc, activities) => {
+        activities.map(activity => {
+          if (!acc.includes(activity)) {
+            acc.push(activity);
+          }
+        })
+
+        return acc;
+      }, []);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -523,6 +666,13 @@ const breweryPrompts = {
     // ]
 
     /* CODE GOES HERE */
+
+    return breweries.map(brewery => {
+      return {
+        name: brewery.name,
+        beerCount: brewery.beers.length
+      }
+    });
 
     // Annotation:
     // Write your annotation here as a comment

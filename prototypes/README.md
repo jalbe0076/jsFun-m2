@@ -90,6 +90,7 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 #### Single Data Sets
 - [X] kitties
 - [X] puppers
+<<<<<<< HEAD
 - [ ] club
 - [ ] mods
 - [ ] cakes
@@ -97,6 +98,15 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 - [ ] books
 - [ ] weather
 - [ ] nationalParks
+=======
+- [X] club
+- [X] mods
+- [X] cakes
+- [X] classrooms
+- [X] books
+- [X] weather
+- [X] nationalParks
+>>>>>>> 2f452fd975f3636abb2775c4a10fefe83bb31019
 - [ ] breweries
 
 ### Double Data Sets
