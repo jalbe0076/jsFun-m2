@@ -686,6 +686,13 @@ const breweryPrompts = {
 
     /* CODE GOES HERE */
 
+    return breweries.reduce((acc, brewery) => {
+      if (brewery.name === breweryName) {
+        acc = brewery.beers.length;
+      }
+      return acc;
+    }, 0)
+
     // Annotation:
     // Write your annotation here as a comment
   },
