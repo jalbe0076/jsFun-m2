@@ -704,6 +704,20 @@ const breweryPrompts = {
 
     /* CODE GOES HERE */
 
+    return breweries.reduce((acc, brewery) => {
+      brewery.beers.map(beer => {
+        if (!acc.abv) {
+          acc = beer;
+        }
+      
+        if (beer.abv > acc.abv) {
+          acc = beer;
+        }
+      })
+
+      return acc;
+    }, {});
+
     // Annotation:
     // Write your annotation here as a comment
   }
