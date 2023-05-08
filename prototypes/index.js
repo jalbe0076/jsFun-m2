@@ -713,7 +713,7 @@ const breweryPrompts = {
         if (beer.abv > acc.abv) {
           acc = beer;
         }
-      })
+      });
 
       return acc;
     }, {});
