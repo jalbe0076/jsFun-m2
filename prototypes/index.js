@@ -604,6 +604,18 @@ const nationalParksPrompts = {
 
     /* CODE GOES HERE */
 
+    return nationalParks
+      .map(park => park.activities)
+      .reduce((acc, activities) => {
+      activities.map(activity => {
+        if (!acc.includes(activity)) {
+          acc.push(activity);
+        }
+      })
+
+        return acc;
+      }, []);
+
     // Annotation:
     // Write your annotation here as a comment
   }
