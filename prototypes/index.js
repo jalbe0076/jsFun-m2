@@ -607,11 +607,11 @@ const nationalParksPrompts = {
     return nationalParks
       .map(park => park.activities)
       .reduce((acc, activities) => {
-      activities.map(activity => {
-        if (!acc.includes(activity)) {
-          acc.push(activity);
-        }
-      })
+        activities.map(activity => {
+          if (!acc.includes(activity)) {
+            acc.push(activity);
+          }
+        })
 
         return acc;
       }, []);
@@ -641,6 +641,16 @@ const breweryPrompts = {
     // 40
 
     /* CODE GOES HERE */
+        //PSEUDOCODE
+          // GOAL = Return the total number of beers available at all brewries
+          // Iterate through an array of objects with nested objects for the beers
+          // use reduce since we want to return a single value
+          
+    const totalAvailableBeers = breweries.reduce((total, brewery) => {
+      return total += brewery.beers.length;
+    }, 0);
+
+    return totalAvailableBeers;
 
     // Annotation:
     // Write your annotation here as a comment
@@ -657,6 +667,13 @@ const breweryPrompts = {
 
     /* CODE GOES HERE */
 
+    return breweries.map(brewery => {
+      return {
+        name: brewery.name,
+        beerCount: brewery.beers.length
+      }
+    });
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -669,6 +686,13 @@ const breweryPrompts = {
 
     /* CODE GOES HERE */
 
+    return breweries.reduce((acc, brewery) => {
+      if (brewery.name === breweryName) {
+        acc = brewery.beers.length;
+      }
+      return acc;
+    }, 0)
+
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -679,6 +703,20 @@ const breweryPrompts = {
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
     /* CODE GOES HERE */
+
+    return breweries.reduce((acc, brewery) => {
+      brewery.beers.map(beer => {
+        if (!acc.abv) {
+          acc = beer;
+        }
+      
+        if (beer.abv > acc.abv) {
+          acc = beer;
+        }
+      });
+
+      return acc;
+    }, {});
 
     // Annotation:
     // Write your annotation here as a comment

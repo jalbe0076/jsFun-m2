@@ -97,7 +97,7 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 - [X] books
 - [X] weather
 - [X] nationalParks
-- [ ] breweries
+- [X] breweries
 
 ### Double Data Sets
 - [ ] turing (instructors, cohorts)
